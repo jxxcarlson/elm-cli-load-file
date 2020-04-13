@@ -25,6 +25,10 @@ For example:
 
 > load foo.txt
 
+## Note
+
+Related code in [this repository](https://github.com/jxxcarlson/elm-platform-worker-example)
+
 ## Location
 
 `~/dev/elm/projects/cli2/`
