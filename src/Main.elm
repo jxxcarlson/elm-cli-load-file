@@ -59,6 +59,9 @@ parseArgs str =
             List.Extra.getAt 1 words
     in
     case ( cmd, arg ) of
+        (Just "show", _) ->
+          Just ("show", "-")
+
         ( Nothing, _ ) ->
             Nothing
 
@@ -88,7 +91,7 @@ update msg model =
                                     model |> withCmd (put "No file contents to show")
 
                                 Just str ->
-                                    model |> withCmd (put <| "File contents: " ++ str)
+                                    model |> withCmd (put <| str)
 
                         _ ->
                             model |> withCmd (put "I don't understand")
@@ -99,7 +102,8 @@ update msg model =
                     model |> withCmd (put "Error getting file")
 
                 Just contents ->
-                    model |> withCmd (put ("Received file contents: " ++ contents))
+                    { model | contents = Just contents }
+                      |> withCmd (put ("Received file"))
 
 
 subscriptions : Model -> Sub Msg

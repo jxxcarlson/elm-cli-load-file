@@ -23,15 +23,12 @@ function eval(cmd, _, _,  callback) {
 
 main.ports.sendFileName.subscribe(function(data) {
   var path =  data
-  // console.log(path)
   fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
     if (err) {
       console.error(err)
       return
     }
-    console.log(data.toString())
-    // Crash on next line !!!!
-    app.ports.receiveData.send(data.toString());
+    main.ports.receiveData.send(data.toString());
 
   })
 });
@@ -41,6 +38,6 @@ function myWriter(output) {
   return output
 }
 
-console.log("\nCommands: (1) show contents (2) load <FILE PATH>\n")
+console.log("\nCommands: (1) load <FILE PATH>, (2) show\n")
 
 repl.start({ prompt: '> ', eval: eval, writer: myWriter});
