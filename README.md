@@ -24,3 +24,7 @@ node cli.js
 For example:
 
 > load foo.txt
+
+## Location
+
+`~/dev/elm/projects/cli2/`
